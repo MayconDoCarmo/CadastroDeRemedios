@@ -1,11 +1,11 @@
-package dev.Maycon.CadastroDeRemedios;
-
-import org.springframework.boot.autoconfigure.domain.EntityScan;
+package dev.Maycon.CadastroDeRemedios.Remedios;
+import dev.Maycon.CadastroDeRemedios.Lotes.LoteModel;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import jakarta.persistence.*;
+
 
 
 @Entity
@@ -23,8 +23,11 @@ public class RemedioModel {
     private String principioAtivo;
     private String fabricante;
 
-    private LocalDate dataValidade;
-    private String lote;
+
+    @ManyToOne
+    @JoinColumn(name = "lote_id", nullable = false)
+
+    private LoteModel lote;
     private String tarja;
     private boolean necessitaReceita;
 
@@ -56,8 +59,7 @@ public class RemedioModel {
             String descricao,
             String dosagem,
             String fabricante,
-            LocalDate dataValidade,
-            String lote,
+            LoteModel lote,
             String tarja,
             boolean necessitaReceita,
             BigDecimal preco,
@@ -67,8 +69,7 @@ public class RemedioModel {
         this.descricao = descricao;
         this.dosagem = dosagem;
         this.fabricante = fabricante;
-        this.dataValidade = dataValidade;
-        this.lote = lote;
+        this.setLote(lote);
         this.tarja = tarja;
         this.necessitaReceita = necessitaReceita;
         this.preco = preco;
@@ -83,21 +84,20 @@ public class RemedioModel {
             String formaFarmaceutica,
             String principioAtivo,
             String fabricante,
-            LocalDate dataValidade,
-            String lote,
+            LoteModel lote,
             String tarja,
             boolean necessitaReceita,
             BigDecimal preco,
             int estoque
     ) {
-        this(nome, descricao, dosagem, fabricante, dataValidade, lote, tarja, necessitaReceita, preco, estoque);
+        this(nome, descricao, dosagem, fabricante, lote, tarja, necessitaReceita, preco, estoque);
         this.formaFarmaceutica = formaFarmaceutica;
         this.principioAtivo = principioAtivo;
         this.ativo = true;
     }
 
 
-    //Metodos mais essencias para atualizar remedio
+    //Metodos mais essencias para atualizar remediogit
 
     public void atualizarNome(String novoNome){
         if (novoNome == null || novoNome.trim().isEmpty()){
@@ -151,6 +151,14 @@ public class RemedioModel {
         this.ativo = false;
     }
 
+    public void setLote(LoteModel lote) {
+        if (lote == null) {
+            throw new IllegalArgumentException("O lote não pode ser nulo.");
+        }
+        this.lote = lote;
+    }
+
+
     //Get
     public String getNome() {
         return nome;
@@ -181,10 +189,14 @@ public class RemedioModel {
     }
 
     public LocalDate getDataValidade() {
-        return dataValidade;
+        if (lote == null) {
+            throw new IllegalStateException("Lote ainda não foi atribuído a este remédio.");
+        }
+        return lote.getDataDeValidade();
+
     }
 
-    public String getLote() {
+    public LoteModel getLote() {
         return lote;
     }
 

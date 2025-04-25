@@ -1,4 +1,4 @@
-package dev.Maycon.CadastroDeRemedios;
+package dev.Maycon.CadastroDeRemedios.Remedios;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
