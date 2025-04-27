@@ -7,46 +7,41 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import lombok.*;
+
+
 @Entity
 @Table(name = "tb_lotes")
+@Getter
+@Setter
+@NoArgsConstructor
 public class LoteModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Setter(AccessLevel.NONE)
     private Long id;
 
+    @Setter
     private String codigo;
+
+    @Setter
     private LocalDate dataDeFabricaco;
+
+    @Setter
     private LocalDate dataDeValidade;
+
 
     @OneToMany(mappedBy = "lote", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<RemedioModel> remedios = new ArrayList<>();
 
-    public Long getId() {
-        return id;
-    }
 
-    public String getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(String codigo) {
+    public LoteModel(String codigo,
+                     LocalDate dataDeFabricacao,
+                     LocalDate dataDeValidade
+    ) {
         this.codigo = codigo;
-    }
-
-    public LocalDate getDataDeFabricaco() {
-        return dataDeFabricaco;
-    }
-
-    public void setDataDeFabricaco(LocalDate dataDeFabricaco) {
-        this.dataDeFabricaco = dataDeFabricaco;
-    }
-
-    public LocalDate getDataDeValidade() {
-        return dataDeValidade;
-    }
-
-    public void setDataDeValidade(LocalDate dataDeValidade) {
+        this.dataDeFabricaco = dataDeFabricacao;
         this.dataDeValidade = dataDeValidade;
     }
 }

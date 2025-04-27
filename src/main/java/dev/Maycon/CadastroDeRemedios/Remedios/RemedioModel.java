@@ -6,10 +6,13 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import jakarta.persistence.*;
 
-
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name = "tb_cadastro")
+@Getter
+@Setter
 public class RemedioModel {
 
     @Id
@@ -158,36 +161,7 @@ public class RemedioModel {
         this.lote = lote;
     }
 
-
     //Get
-    public String getNome() {
-        return nome;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public String getDosagem() {
-        return dosagem;
-    }
-
-    public String getFormaFarmaceutica() {
-        return formaFarmaceutica;
-    }
-
-    public String getPrincipioAtivo() {
-        return principioAtivo;
-    }
-
-    public String getFabricante() {
-        return fabricante;
-    }
-
     public LocalDate getDataValidade() {
         if (lote == null) {
             throw new IllegalStateException("Lote ainda não foi atribuído a este remédio.");
@@ -196,35 +170,4 @@ public class RemedioModel {
 
     }
 
-    public LoteModel getLote() {
-        return lote;
-    }
-
-    public String getTarja() {
-        return tarja;
-    }
-
-    public BigDecimal getPreco() {
-        return preco;
-    }
-
-    public boolean isNecessitaReceita() {
-        return necessitaReceita;
-    }
-
-    public int getEstoque() {
-        return estoque;
-    }
-
-    public boolean isAtivo() {
-        return ativo;
-    }
-
-    public LocalDateTime getCriadoEm() {
-        return criadoEm;
-    }
-
-    public LocalDateTime getAtualizadoEm() {
-        return atualizadoEm;
-    }
 }
