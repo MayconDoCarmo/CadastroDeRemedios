@@ -29,8 +29,8 @@ public class RemedioModel {
 
     @ManyToOne
     @JoinColumn(name = "lote_id", nullable = false)
-
     private LoteModel lote;
+
     private String tarja;
     private boolean necessitaReceita;
 
