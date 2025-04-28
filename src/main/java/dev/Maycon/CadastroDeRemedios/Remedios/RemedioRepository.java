@@ -1,4 +1,6 @@
 package dev.Maycon.CadastroDeRemedios.Remedios;
 
-public class RemedioRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface RemedioRepository extends JpaRepository<RemedioModel, Long> {
 }
