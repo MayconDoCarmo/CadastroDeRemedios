@@ -22,8 +22,13 @@ public class RemedioModel {
     private String nome;
     private String descricao;
     private String dosagem;
+
+    @Column(name = "forma_farmaceutica")
     private String formaFarmaceutica;
+
+    @Column(name = "principio_ativo")
     private String principioAtivo;
+
     private String fabricante;
 
 
@@ -32,14 +37,25 @@ public class RemedioModel {
     private LoteModel lote;
 
     private String tarja;
+
+
+    @Column(name = "necessita_receita")
     private boolean necessitaReceita;
+
 
     private BigDecimal preco;
     private int estoque;
     private boolean ativo;
 
+
+    @Column(name = "criado_em")
     private LocalDateTime criadoEm;
+
+    @Column(name = "atualizado_em")
     private LocalDateTime atualizadoEm;
+
+    @Column(name = "ultima_consulta")
+    private LocalDateTime ultimaConsulta;
 
 
     @PrePersist
@@ -52,6 +68,11 @@ public class RemedioModel {
     @PreUpdate
     protected void onUpdate(){
         this.atualizadoEm = LocalDateTime.now();
+    }
+
+
+    public void registrarConsulta() {
+        this.ultimaConsulta = LocalDateTime.now();
     }
 
     protected RemedioModel() {
@@ -100,7 +121,7 @@ public class RemedioModel {
     }
 
 
-    //Metodos mais essencias para atualizar remediogit
+    //Metodos mais essencias para atualizar remedio
 
     public void atualizarNome(String novoNome){
         if (novoNome == null || novoNome.trim().isEmpty()){
