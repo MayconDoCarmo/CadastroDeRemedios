@@ -1,5 +1,6 @@
 package dev.Maycon.CadastroDeRemedios.Lotes;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import dev.Maycon.CadastroDeRemedios.Remedios.RemedioModel;
 import jakarta.persistence.*;
 
@@ -33,6 +34,7 @@ public class LoteModel {
 
 
     @OneToMany(mappedBy = "lote", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private List<RemedioModel> remedios = new ArrayList<>();
 
 
