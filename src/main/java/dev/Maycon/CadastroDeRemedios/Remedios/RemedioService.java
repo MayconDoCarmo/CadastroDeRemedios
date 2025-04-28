@@ -3,6 +3,7 @@ package dev.Maycon.CadastroDeRemedios.Remedios;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class RemedioService {
@@ -13,10 +14,18 @@ public class RemedioService {
         this.remedioRepository = remedioRepository;
     }
 
+
     //Listar todos remedios
 
     public List<RemedioModel> listarRemedios(){
         return remedioRepository.findAll();
+    }
+
+    //Mostrar remedios por ID (READ)
+
+    public RemedioModel listarRemedioPorId(Long id){
+        Optional<RemedioModel> remedioPorId = remedioRepository.findById(id);
+        return remedioPorId.orElse(null);
     }
 
 }

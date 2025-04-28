@@ -3,6 +3,7 @@ package dev.Maycon.CadastroDeRemedios.Remedios;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping
@@ -31,11 +32,10 @@ public class RemedioController {
         return remedioService.listarRemedios();
     }
 
-
     //Mostrar remedios por ID (READ)
-    @GetMapping("/todosID")
-    public String mostrarRemedioPorID(){
-        return "mostra todos remediosID";
+    @GetMapping("/listar/{id}")
+    public RemedioModel listarRemedioPorId(@PathVariable Long id){
+        return remedioService.listarRemedioPorId(id);
     }
 
     //Alterar dados dos remedios (UPDATE)
