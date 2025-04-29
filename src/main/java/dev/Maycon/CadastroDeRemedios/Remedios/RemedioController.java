@@ -40,14 +40,15 @@ public class RemedioController {
     }
 
     //Alterar dados dos remedios (UPDATE)
-    @PutMapping("/alterarID")
-    public String alterarNinjaPorID(){
-        return "Alterar Ninja por id";
+    @PutMapping("/alterar/{id}")
+    public String alterarNinjaPorID(@PathVariable Long id){
+        return "Alterado Ninja por id";
     }
 
     //Deletar remedios (DELETE)
-    @DeleteMapping("/deletarID")
-    public String deletarRemedioPorID(){
-        return "deletar remedio por id";
+    @DeleteMapping("/deletar/{id}")
+    public void deletarRemedioPorID(@PathVariable Long id) {
+        remedioService.deletarRemedioPorID(id);
+
     }
 }

@@ -35,4 +35,10 @@ public class RemedioService {
         return remedioRepository.save(remedio);
     }
 
+    //Deletar por id
+
+    public void deletarRemedioPorID(Long id){
+        remedioRepository.deleteById(id);
+    }
+
 }
