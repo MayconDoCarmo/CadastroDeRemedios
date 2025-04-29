@@ -1,12 +1,13 @@
 package dev.Maycon.CadastroDeRemedios.Remedios;
 
+import dev.Maycon.CadastroDeRemedios.Lotes.LoteModel;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping
+@RequestMapping("/remedios")
 public class RemedioController {
 
     private RemedioService remedioService;
@@ -22,8 +23,8 @@ public class RemedioController {
 
     //Adicionar remedios (CREATE)
     @PostMapping("/criar")
-    public String criarRemedio(){
-        return "Remedio Criado";
+    public RemedioModel criarRemedio(@RequestBody RemedioModel remedio){
+        return remedioService.criarRemedio(remedio);
     }
 
     //Mostrar todos os remedios (READ)

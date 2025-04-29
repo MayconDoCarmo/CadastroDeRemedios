@@ -1,5 +1,6 @@
 package dev.Maycon.CadastroDeRemedios.Remedios;
 
+import dev.Maycon.CadastroDeRemedios.Lotes.LoteModel;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,6 +27,12 @@ public class RemedioService {
     public RemedioModel listarRemedioPorId(Long id){
         Optional<RemedioModel> remedioPorId = remedioRepository.findById(id);
         return remedioPorId.orElse(null);
+    }
+
+    //Criar remedio
+
+    public RemedioModel criarRemedio(RemedioModel remedio){
+        return remedioRepository.save(remedio);
     }
 
 }
