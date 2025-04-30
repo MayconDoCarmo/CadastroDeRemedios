@@ -35,7 +35,18 @@ public class RemedioService {
         return remedioRepository.save(remedio);
     }
 
-    //Deletar por id
+    //Alterar remedio
+
+    public RemedioModel alterarRemedioPorID(Long id, RemedioModel remedioAtualizado){
+        if(remedioRepository.existsById(id)){
+            remedioAtualizado.setId(id);
+            return remedioRepository.save(remedioAtualizado);
+        }
+        return null;
+    }
+
+
+    //Deletar remedio por id
 
     public void deletarRemedioPorID(Long id){
         remedioRepository.deleteById(id);

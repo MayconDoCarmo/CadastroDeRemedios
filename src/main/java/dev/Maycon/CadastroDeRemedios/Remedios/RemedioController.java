@@ -41,8 +41,8 @@ public class RemedioController {
 
     //Alterar dados dos remedios (UPDATE)
     @PutMapping("/alterar/{id}")
-    public String alterarNinjaPorID(@PathVariable Long id){
-        return "Alterado Ninja por id";
+    public RemedioModel alterarRemedioPorID(@PathVariable Long id, @RequestBody RemedioModel remedioAtualizado){
+        return remedioService.alterarRemedioPorID(id, remedioAtualizado);
     }
 
     //Deletar remedios (DELETE)
