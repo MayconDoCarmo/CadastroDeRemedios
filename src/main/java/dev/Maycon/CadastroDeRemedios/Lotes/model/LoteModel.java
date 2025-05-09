@@ -23,13 +23,10 @@ public class LoteModel {
     @Setter(AccessLevel.NONE)
     private Long id;
 
-    @Setter
     private String codigo;
 
-    @Setter
-    private LocalDate dataDeFabricaco;
+    private LocalDate dataDeFabricacao;
 
-    @Setter
     private LocalDate dataDeValidade;
 
 
@@ -43,7 +40,7 @@ public class LoteModel {
                      LocalDate dataDeValidade
     ) {
         this.codigo = codigo;
-        this.dataDeFabricaco = dataDeFabricacao;
+        this.dataDeFabricacao = dataDeFabricacao;
         this.dataDeValidade = dataDeValidade;
     }
 }
