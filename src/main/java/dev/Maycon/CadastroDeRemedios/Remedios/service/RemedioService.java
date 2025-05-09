@@ -1,6 +1,7 @@
-package dev.Maycon.CadastroDeRemedios.Remedios;
+package dev.Maycon.CadastroDeRemedios.Remedios.service;
 
-import dev.Maycon.CadastroDeRemedios.Lotes.LoteModel;
+import dev.Maycon.CadastroDeRemedios.Remedios.model.RemedioModel;
+import dev.Maycon.CadastroDeRemedios.Remedios.repository.RemedioRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

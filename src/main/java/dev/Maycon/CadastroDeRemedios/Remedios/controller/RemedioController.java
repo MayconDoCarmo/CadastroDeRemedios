@@ -1,10 +1,10 @@
-package dev.Maycon.CadastroDeRemedios.Remedios;
+package dev.Maycon.CadastroDeRemedios.Remedios.controller;
 
-import dev.Maycon.CadastroDeRemedios.Lotes.LoteModel;
+import dev.Maycon.CadastroDeRemedios.Remedios.model.RemedioModel;
+import dev.Maycon.CadastroDeRemedios.Remedios.service.RemedioService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/remedios")

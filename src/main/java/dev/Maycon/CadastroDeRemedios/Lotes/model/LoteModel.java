@@ -1,7 +1,7 @@
-package dev.Maycon.CadastroDeRemedios.Lotes;
+package dev.Maycon.CadastroDeRemedios.Lotes.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import dev.Maycon.CadastroDeRemedios.Remedios.RemedioModel;
+import dev.Maycon.CadastroDeRemedios.Remedios.model.RemedioModel;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;

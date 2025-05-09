@@ -1,5 +1,5 @@
-package dev.Maycon.CadastroDeRemedios.Remedios;
-import dev.Maycon.CadastroDeRemedios.Lotes.LoteModel;
+package dev.Maycon.CadastroDeRemedios.Remedios.model;
+import dev.Maycon.CadastroDeRemedios.Lotes.model.LoteModel;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -7,12 +7,14 @@ import java.time.LocalDateTime;
 import jakarta.persistence.*;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Table(name = "tb_cadastro")
 @Getter
 @Setter
+@NoArgsConstructor
 public class RemedioModel {
 
     @Id
@@ -73,9 +75,6 @@ public class RemedioModel {
 
     public void registrarConsulta() {
         this.ultimaConsulta = LocalDateTime.now();
-    }
-
-    protected RemedioModel() {
     }
 
     public RemedioModel(
