@@ -1,7 +1,7 @@
-package dev.Maycon.CadastroDeRemedios.Lotes;
+package dev.Maycon.CadastroDeRemedios.Lotes.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import dev.Maycon.CadastroDeRemedios.Remedios.RemedioModel;
+import dev.Maycon.CadastroDeRemedios.Remedios.model.RemedioModel;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -20,16 +20,12 @@ public class LoteModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Setter(AccessLevel.NONE)
     private Long id;
 
-    @Setter
     private String codigo;
 
-    @Setter
-    private LocalDate dataDeFabricaco;
+    private LocalDate dataDeFabricacao;
 
-    @Setter
     private LocalDate dataDeValidade;
 
 
@@ -43,7 +39,7 @@ public class LoteModel {
                      LocalDate dataDeValidade
     ) {
         this.codigo = codigo;
-        this.dataDeFabricaco = dataDeFabricacao;
+        this.dataDeFabricacao = dataDeFabricacao;
         this.dataDeValidade = dataDeValidade;
     }
 }
