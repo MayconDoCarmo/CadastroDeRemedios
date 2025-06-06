@@ -1,56 +1,58 @@
 package dev.Maycon.CadastroDeRemedios.Remedios.service;
 
+import dev.Maycon.CadastroDeRemedios.Lotes.model.LoteModel;
+import dev.Maycon.CadastroDeRemedios.Remedios.dto.RemedioRequestDTO;
+import dev.Maycon.CadastroDeRemedios.Remedios.dto.RemedioResponseDTO;
+import dev.Maycon.CadastroDeRemedios.Remedios.mapper.RemedioMapper;
 import dev.Maycon.CadastroDeRemedios.Remedios.model.RemedioModel;
 import dev.Maycon.CadastroDeRemedios.Remedios.repository.RemedioRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class RemedioService {
 
-    private RemedioRepository remedioRepository;
+    private final RemedioRepository remedioRepository;
 
-    public RemedioService( RemedioRepository remedioRepository){
+    public RemedioService(RemedioRepository remedioRepository) {
         this.remedioRepository = remedioRepository;
     }
 
-
-    //Listar todos remedios
-
-    public List<RemedioModel> listarRemedios(){
-        return remedioRepository.findAll();
+    // Listar todos os remédios
+    public List<RemedioResponseDTO> listarRemedios() {
+        return remedioRepository.findAll()
+                .stream()
+                .map(RemedioMapper::toResponseDTO)
+                .collect(Collectors.toList());
     }
 
-    //Mostrar remedios por ID (READ)
-
-    public RemedioModel listarRemedioPorId(Long id){
-        Optional<RemedioModel> remedioPorId = remedioRepository.findById(id);
-        return remedioPorId.orElse(null);
+    // Mostrar remédio por ID
+    public RemedioResponseDTO listarRemedioPorId(Long id) {
+        Optional<RemedioModel> remedioOptional = remedioRepository.findById(id);
+        return remedioOptional.map(RemedioMapper::toResponseDTO).orElse(null);
     }
 
-    //Criar remedio
-
-    public RemedioModel criarRemedio(RemedioModel remedio){
-        return remedioRepository.save(remedio);
+    // Criar remédio
+    public RemedioResponseDTO criarRemedio(RemedioRequestDTO dto, LoteModel lote) {
+        RemedioModel novoRemedio = new RemedioMapper().toRequestDTO(dto, lote);
+        return RemedioMapper.toResponseDTO(remedioRepository.save(novoRemedio));
     }
 
-    //Alterar remedio
-
-    public RemedioModel alterarRemedioPorID(Long id, RemedioModel remedioAtualizado){
-        if(remedioRepository.existsById(id)){
+    // Atualizar remédio
+    public RemedioResponseDTO alterarRemedioPorId(Long id, RemedioRequestDTO dto, LoteModel lote) {
+        if (remedioRepository.existsById(id)) {
+            RemedioModel remedioAtualizado = new RemedioMapper().toRequestDTO(dto, lote);
             remedioAtualizado.setId(id);
-            return remedioRepository.save(remedioAtualizado);
+            return RemedioMapper.toResponseDTO(remedioRepository.save(remedioAtualizado));
         }
         return null;
     }
 
-
-    //Deletar remedio por id
-
-    public void deletarRemedioPorID(Long id){
+    // Deletar remédio
+    public void deletarRemedioPorID(Long id) {
         remedioRepository.deleteById(id);
     }
-
 }

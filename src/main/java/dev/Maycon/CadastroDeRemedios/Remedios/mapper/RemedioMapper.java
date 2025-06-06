@@ -1,5 +1,6 @@
 package dev.Maycon.CadastroDeRemedios.Remedios.mapper;
 
+import dev.Maycon.CadastroDeRemedios.Lotes.dto.LoteRequestDTO;
 import dev.Maycon.CadastroDeRemedios.Lotes.model.LoteModel;
 import dev.Maycon.CadastroDeRemedios.Remedios.dto.RemedioRequestDTO;
 import dev.Maycon.CadastroDeRemedios.Remedios.dto.RemedioResponseDTO;
@@ -7,7 +8,7 @@ import dev.Maycon.CadastroDeRemedios.Remedios.model.RemedioModel;
 
 public class RemedioMapper {
 
-    public RemedioModel map(RemedioRequestDTO requestDTO, LoteModel lote){
+    public static RemedioModel toRequestDTO(RemedioRequestDTO requestDTO, LoteModel lote){
         RemedioModel remedioModel = new RemedioModel();
         remedioModel.setNome(requestDTO.getNome());
         remedioModel.setDescricao(requestDTO.getDescricao());
@@ -25,7 +26,7 @@ public class RemedioMapper {
 
     };
 
-    public RemedioResponseDTO map(RemedioModel remedioModel){
+    public static RemedioResponseDTO toResponseDTO(RemedioModel remedioModel){
         RemedioResponseDTO responseDTO = new RemedioResponseDTO();
         responseDTO.setId(remedioModel.getId());
         responseDTO.setNome(remedioModel.getNome());

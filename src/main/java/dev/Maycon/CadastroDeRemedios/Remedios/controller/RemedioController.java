@@ -1,5 +1,8 @@
 package dev.Maycon.CadastroDeRemedios.Remedios.controller;
 
+import dev.Maycon.CadastroDeRemedios.Lotes.model.LoteModel;
+import dev.Maycon.CadastroDeRemedios.Remedios.dto.RemedioRequestDTO;
+import dev.Maycon.CadastroDeRemedios.Remedios.dto.RemedioResponseDTO;
 import dev.Maycon.CadastroDeRemedios.Remedios.model.RemedioModel;
 import dev.Maycon.CadastroDeRemedios.Remedios.service.RemedioService;
 import org.springframework.web.bind.annotation.*;
@@ -23,26 +26,26 @@ public class RemedioController {
 
     //Adicionar remedios (CREATE)
     @PostMapping("/criar")
-    public RemedioModel criarRemedio(@RequestBody RemedioModel remedio){
-        return remedioService.criarRemedio(remedio);
+    public RemedioResponseDTO criarRemedio(@RequestBody RemedioRequestDTO remedio, LoteModel lote){
+        return remedioService.criarRemedio(remedio, lote);
     }
 
     //Mostrar todos os remedios (READ)
     @GetMapping("/listar")
-    public List<RemedioModel> listarRemedios() {
+    public List<RemedioResponseDTO> listarRemedios() {
         return remedioService.listarRemedios();
     }
 
     //Mostrar remedios por ID (READ)
     @GetMapping("/listar/{id}")
-    public RemedioModel listarRemedioPorId(@PathVariable Long id){
+    public RemedioResponseDTO listarRemedioPorId(@PathVariable Long id){
         return remedioService.listarRemedioPorId(id);
     }
 
     //Alterar dados dos remedios (UPDATE)
     @PutMapping("/alterar/{id}")
-    public RemedioModel alterarRemedioPorID(@PathVariable Long id, @RequestBody RemedioModel remedioAtualizado){
-        return remedioService.alterarRemedioPorID(id, remedioAtualizado);
+    public RemedioResponseDTO alterarRemedioPorId(@PathVariable Long id, @RequestBody RemedioRequestDTO remedioAtualizado, LoteModel lote){
+        return remedioService.alterarRemedioPorId(id, remedioAtualizado, lote);
     }
 
     //Deletar remedios (DELETE)
